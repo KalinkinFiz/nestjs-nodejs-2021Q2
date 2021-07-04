@@ -15,7 +15,7 @@
     "lint": "eslint --ext .js,.ts --fix src/",
     "test": "cross-env DEBUG=rs:* jest --testMatch \"<rootDir>/test/e2e/test/*.test.js\" --noStackTrace --runInBand",
     "test:auth": "cross-env DEBUG=rs:* TEST_MODE=auth jest --noStackTrace",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ./src/config.orm.ts",
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/config.orm.ts",
     "migration": "npm run typeorm migration:run",
     "migration:create": "npm run typeorm migration:create -n",
     "migration:revert": "npm run typeorm migration:revert"
@@ -57,6 +57,7 @@
     "@nestjs/swagger": "^4.8.2",
     "@nestjs/typeorm": "^7.1.5",
     "bcrypt": "^5.0.1",
+    "class-validator": "^0.13.1",
     "cross-env": "7.0.3",
     "dotenv": "^10.0.0",
     "express-async-handler": "^1.1.4",

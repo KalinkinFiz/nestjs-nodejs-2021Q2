@@ -19,7 +19,7 @@ export default {
   reconnectTries: Number.MAX_VALUE,
   reconnectionInterval: 1000,
   entities: [path.join(__dirname, '../**/*.entity.ts')],
-  migrations: [path.join(__dirname, './migrations/*.ts')],
+  migrations: [path.join(__dirname, 'migrations/*.ts')],
   cli: {
     migrationsDir: 'migrations',
   },

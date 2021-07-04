@@ -9,7 +9,6 @@ export class TypeormService implements TypeOrmOptionsFactory {
   async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
     const options = {
       ...config,
-      synchronize: true,
     };
     createConnection(options)
       .then((data) => {
