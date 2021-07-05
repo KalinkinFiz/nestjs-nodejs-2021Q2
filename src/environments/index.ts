@@ -20,6 +20,9 @@ const JWT_SECRET_KEY: string = process.env.JWT_SECRET_KEY || 'secret-key';
 // auth
 const AUTH_MODE: boolean = process.env.AUTH_MODE === 'true';
 
+// USE_FASTIFY
+const USE_FASTIFY: boolean = process.env.USE_FASTIFY === 'true';
+
 // database
 const POSTGRES_HOST: string = process.env.POSTGRES_HOST || 'localhost';
 const POSTGRES_PORT = process.env.POSTGRES_PORT || '5432';
@@ -33,6 +36,7 @@ export {
   PORT,
   JWT_SECRET_KEY,
   AUTH_MODE,
+  USE_FASTIFY,
   POSTGRES_HOST,
   POSTGRES_PORT,
   POSTGRES_USER,

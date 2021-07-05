@@ -1,8 +1,8 @@
 {
   "name": "nest-js",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "REST service starter for RS School",
+  "author": "kalinkin.fiz",
   "private": true,
   "scripts": {
     "prebuild": "rimraf dist",

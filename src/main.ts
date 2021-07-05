@@ -5,16 +5,21 @@ import { SwaggerModule } from '@nestjs/swagger';
 import * as path from 'path';
 import * as YAML from 'yamljs';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 
-import { PORT } from './environments';
+import { PORT, USE_FASTIFY } from './environments';
 
 async function bootstrap() {
   try {
     let app: INestApplication;
 
-    app = await NestFactory.create<NestExpressApplication>(AppModule);
-    app.enableCors();
+    if (!USE_FASTIFY) {
+      app = await NestFactory.create<NestExpressApplication>(AppModule);
+    } else {
+      app = await NestFactory.create<NestFastifyApplication>(AppModule);
+    }
+
     const document = YAML.load(path.join(__dirname, '../doc/api.yaml'));
     SwaggerModule.setup('api', app, document);
 
