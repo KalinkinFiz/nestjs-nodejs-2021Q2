@@ -3,7 +3,7 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 
 import { UsersService } from './users.service';
-import { UserModel } from './user.entity';
+import { UserModel } from './entities/user.entity';
 
 @Controller('users')
 export class UsersController {

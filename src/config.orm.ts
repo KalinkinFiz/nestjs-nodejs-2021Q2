@@ -2,7 +2,8 @@ import { ConnectionOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
-import { UserModel } from './resource/users/user.entity';
+import { UserModel } from './resource/users/entities/user.entity';
+import { Board } from './resource/boards/entities/board.entity';
 
 dotenv.config({
   path: path.join(__dirname, '../.env'),
@@ -20,7 +21,7 @@ export default {
   autoReconnect: true,
   reconnectTries: Number.MAX_VALUE,
   reconnectionInterval: 1000,
-  entities: [UserModel],
+  entities: [UserModel, Board],
   synchronize: true,
   // migrationsRun: true,
   // migrationsTableName: 'migrations',

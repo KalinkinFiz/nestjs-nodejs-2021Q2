@@ -1,7 +1,7 @@
 import { EntityRepository, AbstractRepository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserModel } from './user.entity';
+import { UserModel } from './entities/user.entity';
 
 @EntityRepository(UserModel)
 export class UserRepository extends AbstractRepository<UserModel> {

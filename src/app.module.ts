@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 
 import { TypeormService } from './common';
 import { UsersModule } from './resource/users/users.module';
+import { BoardsModule } from './resource/boards/boards.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { UsersModule } from './resource/users/users.module';
       useClass: TypeormService,
     }),
     UsersModule,
+    BoardsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
