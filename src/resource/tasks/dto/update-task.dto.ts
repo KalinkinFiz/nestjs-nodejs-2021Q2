@@ -1,9 +1,8 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { IsUUID } from 'class-validator';
-import { CreateBoardDto } from './create-board.dto';
+import { CreateTaskDto } from './create-task.dto';
 
-
-export class UpdateBoardDto extends PartialType(CreateBoardDto) {
+export class UpdateTaskDto extends PartialType(CreateTaskDto) {
   @IsUUID()
   id?: string;
 }

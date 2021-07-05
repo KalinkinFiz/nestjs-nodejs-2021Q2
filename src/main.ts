@@ -4,8 +4,8 @@ import * as chalk from 'chalk';
 import { SwaggerModule } from '@nestjs/swagger';
 import * as path from 'path';
 import * as YAML from 'yamljs';
-import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { AppModule } from './app.module';
 
 import { PORT } from './environments';
 

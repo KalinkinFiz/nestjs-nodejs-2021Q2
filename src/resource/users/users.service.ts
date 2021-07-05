@@ -1,22 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
+
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserModel } from './entities/user.entity';
 import { UserRepository } from './user.repository';
 
+import { TaskRepository } from '../tasks/task.repository';
+
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UserRepository) {}
+  constructor(
+    private readonly taskRepository: TaskRepository,
+    private readonly usersRepository: UserRepository,
+  ) {}
 
   createUser = async (createUserDto: CreateUserDto): Promise<UserModel> => {
     const user = await this.usersRepository.createUser(createUserDto);
     return user;
   };
 
-  getAll = async (): Promise<UserModel[]> => {
-    return this.usersRepository.getAllUsers();
-  };
+  getAll = async (): Promise<UserModel[]> => this.usersRepository.getAllUsers();
 
   getById = async (id: string): Promise<UserModel | null> => {
     const user = await this.usersRepository.getById(id);
@@ -37,7 +41,7 @@ export class UsersService {
     if (!userDeletable) return null;
     await this.usersRepository.deleteById(id);
 
-    // await taskRepository.updateByUserId(id, { userId: null });
+    await this.taskRepository.updateByUserId(id, { userId: null });
 
     return userDeletable;
   };

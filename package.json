@@ -52,11 +52,13 @@
   "dependencies": {
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
+    "@nestjs/mapped-types": "^0.4.1",
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/platform-fastify": "^7.6.18",
     "@nestjs/swagger": "^4.8.2",
     "@nestjs/typeorm": "^7.1.5",
     "bcrypt": "^5.0.1",
+    "chalk": "^4.1.1",
     "class-validator": "^0.13.1",
     "cross-env": "7.0.3",
     "dotenv": "^10.0.0",

@@ -5,10 +5,14 @@ import { Board } from './entities/board.entity';
 import { BoardRepository } from './board.repository';
 
 import Column from '../columns/column';
+import { TaskRepository } from '../tasks/task.repository';
 
 @Injectable()
 export class BoardsService {
-  constructor(private readonly boardRepository: BoardRepository) {}
+  constructor(
+    private readonly taskRepository: TaskRepository,
+    private readonly boardRepository: BoardRepository,
+  ) {}
 
   createBoard = async (createBoardDto: CreateBoardDto): Promise<Board> => {
     const columns = await Promise.all(createBoardDto.columns?.map(Column.create) || []);
@@ -17,9 +21,7 @@ export class BoardsService {
     return board;
   };
 
-  getAll = async (): Promise<Board[]> => {
-    return this.boardRepository.getAllBoards();
-  };
+  getAll = async (): Promise<Board[]> => this.boardRepository.getAllBoards();
 
   getById = async (id: string): Promise<Board | null> => {
     const board = await this.boardRepository.getById(id);
@@ -32,7 +34,7 @@ export class BoardsService {
     if (!boardDeletable) return null;
     await this.boardRepository.deleteById(id);
 
-    // await this.taskRepository.updateByBoardId(id, { boardId: null });
+    await this.taskRepository.updateByBoardId(id, { boardId: null });
 
     return boardDeletable!;
   };

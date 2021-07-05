@@ -4,6 +4,7 @@ import * as path from 'path';
 
 import { UserModel } from './resource/users/entities/user.entity';
 import { Board } from './resource/boards/entities/board.entity';
+import { Task } from './resource/tasks/entities/task.entity';
 
 dotenv.config({
   path: path.join(__dirname, '../.env'),
@@ -21,7 +22,7 @@ export default {
   autoReconnect: true,
   reconnectTries: Number.MAX_VALUE,
   reconnectionInterval: 1000,
-  entities: [UserModel, Board],
+  entities: [UserModel, Board, Task],
   synchronize: true,
   // migrationsRun: true,
   // migrationsTableName: 'migrations',

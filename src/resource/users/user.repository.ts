@@ -5,8 +5,8 @@ import { UserModel } from './entities/user.entity';
 
 @EntityRepository(UserModel)
 export class UserRepository extends AbstractRepository<UserModel> {
-  createUser({ name, login, password }: CreateUserDto) {
-    const user = this.repository.create({ name, login, password });
+  createUser(createUserDto: CreateUserDto) {
+    const user = this.repository.create(createUserDto);
     return this.repository.save(user);
   }
 
