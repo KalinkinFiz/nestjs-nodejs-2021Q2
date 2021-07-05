@@ -2,6 +2,8 @@ import { ConnectionOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
+import { UserModel } from './resource/users/user.entity';
+
 dotenv.config({
   path: path.join(__dirname, '../.env'),
 });
@@ -18,11 +20,12 @@ export default {
   autoReconnect: true,
   reconnectTries: Number.MAX_VALUE,
   reconnectionInterval: 1000,
-  entities: [path.join(__dirname, '../**/*.entity.ts')],
+  entities: [UserModel],
   synchronize: true,
-  migrationsRun: true,
-  migrations: [path.join(__dirname, 'migrations/*.ts')],
-  cli: {
-    migrationsDir: 'migrations',
-  },
+  // migrationsRun: true,
+  // migrationsTableName: 'migrations',
+  // migrations: [path.join(__dirname, '../src/migrations/*.ts')],
+  // cli: {
+  //   migrationsDir: 'migrations',
+  // },
 } as ConnectionOptions;

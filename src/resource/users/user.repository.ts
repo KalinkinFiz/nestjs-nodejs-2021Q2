@@ -1,39 +1,32 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { EntityRepository, AbstractRepository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserModel } from './user.entity';
 
-@Injectable()
-export class UsersRepository {
-  constructor(
-    @InjectRepository(UserModel)
-    private usersRepository: Repository<UserModel>,
-  ) {}
-
-  async createUser(data: CreateUserDto) {
-    const user = this.usersRepository.create(data);
-    return await this.usersRepository.save(user);
+@EntityRepository(UserModel)
+export class UserRepository extends AbstractRepository<UserModel> {
+  createUser({ name, login, password }: CreateUserDto) {
+    const user = this.repository.create({ name, login, password });
+    return this.repository.save(user);
   }
 
-  async getAllUsers() {
-    return await this.usersRepository.find();
+  getAllUsers() {
+    return this.repository.find();
   }
 
-  async getById(id: string) {
-    return await this.usersRepository.findOne({ id });
+  getById(id: string) {
+    return this.repository.findOne({ id });
   }
 
-  async findByCredentials(login: string) {
-    return await this.usersRepository.findOne({ login });
+  findByCredentials(login: string) {
+    return this.repository.findOne({ login });
   }
 
-  async updateById(id: string, user: UpdateUserDto) {
-    return await this.usersRepository.update({ id }, user);
+  updateById(id: string, updateUserDto: UpdateUserDto) {
+    return this.repository.update({ id }, updateUserDto);
   }
 
-  async deleteById(id: string) {
-    return await this.usersRepository.delete({ id });
+  deleteById(id: string) {
+    return this.repository.delete({ id });
   }
 }

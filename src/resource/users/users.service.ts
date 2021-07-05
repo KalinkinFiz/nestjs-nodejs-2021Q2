@@ -3,14 +3,14 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserModel } from './user.entity';
-import { UsersRepository } from './user.repository';
+import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly usersRepository: UsersRepository) {}
+  constructor(private readonly usersRepository: UserRepository) {}
 
-  createUser = async (data: CreateUserDto): Promise<UserModel> => {
-    const user = await this.usersRepository.createUser(data);
+  createUser = async (createUserDto: CreateUserDto): Promise<UserModel> => {
+    const user = await this.usersRepository.createUser(createUserDto);
     return user;
   };
 
@@ -42,8 +42,8 @@ export class UsersService {
     return userDeletable;
   };
 
-  updateById = async (id: string, data: UpdateUserDto): Promise<UserModel | null> => {
-    await this.usersRepository.updateById(id, data);
+  updateById = async (id: string, updateUserDto: UpdateUserDto): Promise<UserModel | null> => {
+    await this.usersRepository.updateById(id, updateUserDto);
     const user = await this.usersRepository.getById(id);
     if (!user) return null;
     return user;
