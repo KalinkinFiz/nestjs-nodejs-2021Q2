@@ -6,18 +6,18 @@ import config from '../../config.orm';
 
 @Injectable()
 export class TypeormService implements TypeOrmOptionsFactory {
-  async createTypeOrmOptions(): Promise<TypeOrmModuleOptions> {
+  createTypeOrmOptions = async (): Promise<TypeOrmModuleOptions> => {
     const options = {
       ...config,
     };
     createConnection(options)
-      .then((data) => {
+      .then(() => {
         Logger.log(`☁️  Database connected`, 'TypeORM', false);
       })
-      .catch((err) => {
+      .catch(() => {
         Logger.error(`❌  Database connect error`, '', 'TypeORM', false);
       });
 
     return options;
-  }
+  };
 }
