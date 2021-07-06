@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Put, Delete, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Req, Res, UseFilters } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import { HttpExceptionFilter } from '../../middleware/http-exception.filter';
 
 import { UsersService } from './users.service';
 import { UserModel } from './entities/user.entity';
 
 @Controller('users')
+@UseFilters(HttpExceptionFilter)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 

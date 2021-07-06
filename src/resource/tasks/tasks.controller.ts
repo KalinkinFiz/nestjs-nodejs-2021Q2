@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Put, Delete, Req, Res } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Req, Res, UseFilters } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
+import { HttpExceptionFilter } from '../../middleware/http-exception.filter';
 
 import { TasksService } from './tasks.service';
 import { Task } from './entities/task.entity';
 
 @Controller('boards/:boardId/tasks')
+@UseFilters(HttpExceptionFilter)
 export class TasksController {
   constructor(private readonly tasksService: TasksService) {}
 
