@@ -23,11 +23,9 @@ export default {
   reconnectTries: Number.MAX_VALUE,
   reconnectionInterval: 1000,
   entities: [UserModel, Board, Task],
-  synchronize: true,
-  // migrationsRun: true,
-  // migrationsTableName: 'migrations',
-  // migrations: [path.join(__dirname, '../src/migrations/*.ts')],
-  // cli: {
-  //   migrationsDir: 'migrations',
-  // },
+  // synchronize: true,
+  migrationsRun: true,
+  migrationsTableName: 'migrations',
+  migrations: ['dist/migrations/*{.ts,.js}'],
+  cli: { migrationsDir: 'src/migrations' },
 } as ConnectionOptions;
