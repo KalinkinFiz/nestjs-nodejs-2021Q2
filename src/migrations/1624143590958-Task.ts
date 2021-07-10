@@ -12,6 +12,7 @@ export class Task1624143590958 implements MigrationInterface {
             isGenerated: true,
             type: 'uuid',
             isPrimary: true,
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'title',

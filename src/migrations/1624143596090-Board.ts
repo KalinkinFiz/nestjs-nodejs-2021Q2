@@ -12,6 +12,7 @@ export class Board1624143596090 implements MigrationInterface {
             isGenerated: true,
             type: 'uuid',
             isPrimary: true,
+            default: 'uuid_generate_v4()',
           },
           {
             name: 'title',
