@@ -10,12 +10,14 @@ import { TypeormService } from './common';
 import { UsersModule } from './resource/users/users.module';
 import { BoardsModule } from './resource/boards/boards.module';
 import { TasksModule } from './resource/tasks/tasks.module';
+import { AuthModule } from './resource/auth/auth.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRootAsync({
       useClass: TypeormService,
     }),
+    AuthModule,
     UsersModule,
     BoardsModule,
     TasksModule,

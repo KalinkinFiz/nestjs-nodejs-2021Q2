@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 @Entity({ name: 'users' })
-export class UserModel {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   public id!: string;
 
@@ -20,7 +20,7 @@ export class UserModel {
     this.password = bcrypt.hashSync(this.password, 10);
   }
 
-  static toResponse({ id, login, name }: UserModel) {
+  static toResponse({ id, login, name }: User) {
     return { id, login, name };
   }
 }

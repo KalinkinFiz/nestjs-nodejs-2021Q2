@@ -2,7 +2,7 @@ import { ConnectionOptions } from 'typeorm';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 
-import { UserModel } from './resource/users/entities/user.entity';
+import { User } from './resource/users/entities/user.entity';
 import { Board } from './resource/boards/entities/board.entity';
 import { Task } from './resource/tasks/entities/task.entity';
 
@@ -22,7 +22,7 @@ export default {
   autoReconnect: true,
   reconnectTries: Number.MAX_VALUE,
   reconnectionInterval: 1000,
-  entities: [UserModel, Board, Task],
+  entities: [User, Board, Task],
   // synchronize: true,
   migrationsRun: true,
   migrationsTableName: 'migrations',

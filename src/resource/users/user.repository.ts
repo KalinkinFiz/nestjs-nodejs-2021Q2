@@ -1,10 +1,10 @@
 import { EntityRepository, AbstractRepository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserModel } from './entities/user.entity';
+import { User } from './entities/user.entity';
 
-@EntityRepository(UserModel)
-export class UserRepository extends AbstractRepository<UserModel> {
+@EntityRepository(User)
+export class UserRepository extends AbstractRepository<User> {
   createUser(createUserDto: CreateUserDto) {
     const user = this.repository.create(createUserDto);
     return this.repository.save(user);

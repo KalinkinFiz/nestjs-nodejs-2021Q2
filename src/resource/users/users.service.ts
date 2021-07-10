@@ -3,7 +3,7 @@ import * as bcrypt from 'bcrypt';
 
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { UserModel } from './entities/user.entity';
+import { User } from './entities/user.entity';
 import { UserRepository } from './user.repository';
 
 import { TaskRepository } from '../tasks/task.repository';
@@ -15,20 +15,20 @@ export class UsersService {
     private readonly usersRepository: UserRepository,
   ) {}
 
-  createUser = async (createUserDto: CreateUserDto): Promise<UserModel> => {
+  createUser = async (createUserDto: CreateUserDto): Promise<User> => {
     const user = await this.usersRepository.createUser(createUserDto);
     return user;
   };
 
-  getAll = async (): Promise<UserModel[]> => this.usersRepository.getAllUsers();
+  getAll = async (): Promise<User[]> => this.usersRepository.getAllUsers();
 
-  getById = async (id: string): Promise<UserModel | null> => {
+  getById = async (id: string): Promise<User | null> => {
     const user = await this.usersRepository.getById(id);
     if (!user) return null;
     return user;
   };
 
-  findByCredentials = async (login: string, password: string): Promise<UserModel | null> => {
+  findByCredentials = async (login: string, password: string): Promise<User | null> => {
     const user = await this.usersRepository.findByCredentials(login);
     if (!user) return null;
     const passwordVerification = await bcrypt.compare(password, user.password);
@@ -36,7 +36,7 @@ export class UsersService {
     return user;
   };
 
-  deleteById = async (id: string): Promise<UserModel | null> => {
+  deleteById = async (id: string): Promise<User | null> => {
     const userDeletable = await this.usersRepository.getById(id);
     if (!userDeletable) return null;
     await this.usersRepository.deleteById(id);
@@ -46,7 +46,7 @@ export class UsersService {
     return userDeletable;
   };
 
-  updateById = async (id: string, updateUserDto: UpdateUserDto): Promise<UserModel | null> => {
+  updateById = async (id: string, updateUserDto: UpdateUserDto): Promise<User | null> => {
     await this.usersRepository.updateById(id, updateUserDto);
     const user = await this.usersRepository.getById(id);
     if (!user) return null;
