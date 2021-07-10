@@ -9,6 +9,7 @@ import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 
 import { PORT, USE_FASTIFY } from './environments';
+import { LoggingInterceptor } from './middleware/logging.interceptor';
 
 async function bootstrap() {
   try {
@@ -19,6 +20,8 @@ async function bootstrap() {
     } else {
       app = await NestFactory.create<NestFastifyApplication>(AppModule);
     }
+
+    app.useGlobalInterceptors(new LoggingInterceptor());
 
     const document = YAML.load(path.join(__dirname, '../doc/api.yaml'));
     SwaggerModule.setup('doc', app, document);
