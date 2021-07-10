@@ -1,4 +1,4 @@
-import { IsString, IsInt, IsUUID } from 'class-validator';
+import { IsString, IsInt, IsUUID, IsOptional } from 'class-validator';
 
 export class CreateTaskDto {
   @IsString()
@@ -10,12 +10,15 @@ export class CreateTaskDto {
   @IsString()
   description: string;
 
-  @IsUUID()
+  @IsOptional()
+  @IsUUID(4)
   userId: string | null;
 
-  @IsUUID()
+  @IsOptional()
+  @IsUUID(4)
   boardId: string | null;
 
-  @IsUUID()
+  @IsOptional()
+  @IsUUID(4)
   columnId: string | null;
 }

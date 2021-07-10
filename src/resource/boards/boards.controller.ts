@@ -70,7 +70,7 @@ export class BoardsController {
     }
   }
 
-  @Delete('/:userId')
+  @Delete('/:id')
   async deleteById(@Req() req: Request, @Res() res: Response) {
     const { id } = req.params;
 
