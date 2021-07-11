@@ -22,14 +22,25 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+# RS School REST service
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Prerequisites
 
-## Installation
+- Git - [Download & Install Git](https://git-scm.com/downloads).
+- Node.js - [Download & Install Node.js](https://nodejs.org/en/download/) and the npm package
+  manager.
+- Docker - [Download & Install Docker](https://www.docker.com/products/docker-desktop).
 
-```bash
-$ npm install
+## Downloading
+
+```
+git clone {repository URL}
+```
+
+## Installing NPM modules
+
+```
+npm install
 ```
 
 ## Running the app
@@ -40,22 +51,60 @@ $ npm run start
 
 # watch mode
 $ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Or Running via docker
 
-```bash
-# unit tests
-$ npm run test
+Run in terminal:
 
-# e2e tests
-$ npm run test:e2e
+```
+ docker-compose up
+```
 
-# test coverage
-$ npm run test:cov
+If you want to stop, press the keyboard shortcut first **Ctrl+C**, then enter in the terminal:
+
+```
+ docker-compose down
+```
+
+Rebuild images & start containers:
+
+```
+ docker compose up --build
+```
+
+Сonnected services:
+
+- PostgreSQL
+- pgAdmin
+- Express
+
+## Testing
+
+After application running open new terminal and enter:
+
+To run all test with authorization
+
+```
+npm run test:auth
+```
+
+To run only specific test suite with authorization (users, boards or tasks)
+
+```
+npm run test:auth <suite name>
+```
+
+## Development
+
+If you're using VSCode, you can get a better developer experience from integration with
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) and
+[Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) extensions.
+
+### Auto-fix and format
+
+```
+npm run lint
 ```
 
 # Express
@@ -77,19 +126,3 @@ $ npm run test:cov
 | Overall Latency Distribution | [min, max, median, p95, p99] | 1, 90, 6, 62, 70   |
 | Success                      | [ratio]                      | 100.00%            |
 | Status Codes                 | [code:count]                 | 200: 480; 201: 120 |
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the
-amazing backers. If you'd like to join them, please
-[read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
