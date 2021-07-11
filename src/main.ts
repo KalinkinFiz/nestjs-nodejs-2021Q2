@@ -9,7 +9,7 @@ import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 
 import { PORT, USE_FASTIFY } from './environments';
-import { LoggingInterceptor } from './middleware/logging.interceptor';
+import { LoggingInterceptor } from './interceptor/logging.interceptor';
 
 async function bootstrap() {
   try {

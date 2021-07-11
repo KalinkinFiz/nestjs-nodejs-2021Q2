@@ -4,7 +4,7 @@ import { APP_FILTER } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
-import { HttpExceptionFilter } from './middleware/http-exception.filter';
+import { HttpExceptionFilter } from './filter/http-exception.filter';
 
 import { TypeormService } from './common';
 import { UsersModule } from './resource/users/users.module';

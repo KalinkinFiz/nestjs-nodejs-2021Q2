@@ -10,8 +10,7 @@ export class LoggingInterceptor implements NestInterceptor {
     const req = context.switchToHttp().getRequest();
     const res = context.switchToHttp().getResponse();
 
-    const requestTime = new Date();
-    const processTime = Date.now() - +requestTime;
+    const startTime = Date.now();
     const logsFolder = path.join(__dirname, '../../logs');
 
     if (!fs.existsSync(logsFolder)) {
@@ -22,19 +21,24 @@ export class LoggingInterceptor implements NestInterceptor {
       fs.appendFileSync('./logs/logging.log', `${text}\n`);
     };
 
-    recLogging(
-      ` ⛩   REQUEST: ${req.method} 
-      URL: ${req.url}, 
-      QUERY: ${req.query}, 
-      BODY: ${req.body} 
-      PROCESSING TIME: ${processTime} 
-      STATUS CODE: ${res.statusCode}\n`,
-    );
-
     return next.handle().pipe(
       tap(() => {
+        const processTime = Date.now() - startTime;
+        recLogging(
+          ` ⛩   REQUEST: ${req.method} 
+          URL: ${req.url}, 
+          BODY: ${JSON.stringify(req.body)}
+          PARAMS: ${JSON.stringify(req.params)} 
+          PROCESSING TIME: ${processTime} 
+          STATUS CODE: ${res.statusCode}\n`,
+        );
+
         Logger.debug(
-          `⛩  REQUEST: ${req.method} URL: ${req.url}, QUERY: ${req.query}, BODY: ${req.body} PROCESSING TIME: ${processTime} STATUS CODE: ${res.statusCode}`,
+          `⛩  REQUEST: ${req.method} URL: ${req.url}, BODY: ${JSON.stringify(
+            req.body,
+          )} PARAMS: ${JSON.stringify(req.params)} PROCESSING TIME: ${processTime} STATUS CODE: ${
+            res.statusCode
+          }`,
           'Restful',
         );
       }),

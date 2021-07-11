@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-import { HttpExceptionFilter } from '../../middleware/http-exception.filter';
+import { HttpExceptionFilter } from '../../filter/http-exception.filter';
 
 import { TasksService } from './tasks.service';
 import { Task } from './entities/task.entity';
