@@ -58,9 +58,31 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+# Express
+
+|                              |                              |                    |
+| ---------------------------- | ---------------------------- | ------------------ |
+| Requests                     | [Completed]                  | 600                |
+| Mean                         | [respsonse/sec]              | 5.02               |
+| Overall Latency Distribution | [min, max, median, p95, p99] | 1, 146, 6, 64, 91  |
+| Success                      | [ratio]                      | 100.00%            |
+| Status Codes                 | [code:count]                 | 200: 480; 201: 120 |
+
+# Fastify
+
+|                              |                              |                    |
+| ---------------------------- | ---------------------------- | ------------------ |
+| Requests                     | [Completed]                  | 600                |
+| Mean                         | [respsonse/sec]              | 5.02               |
+| Overall Latency Distribution | [min, max, median, p95, p99] | 1, 90, 6, 62, 70   |
+| Success                      | [ratio]                      | 100.00%            |
+| Status Codes                 | [code:count]                 | 200: 480; 201: 120 |
+
 ## Support
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the
+amazing backers. If you'd like to join them, please
+[read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 

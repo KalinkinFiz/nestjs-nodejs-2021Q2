@@ -1,0 +1,49 @@
+config:
+  target: 'http://localhost:4000'
+  phases:
+    - duration: 120
+      arrivalRate: 1
+
+scenarios:
+  - name: 'Users'
+
+    flow:
+      - post:
+          url: '/login'
+          json:
+            login: 'admin'
+            password: 'admin'
+          capture:
+            json: '$.token'
+            as: 'token'
+
+      - post:
+          url: '/users'
+          headers:
+            Authorization: 'Bearer {{ token }}'
+          json:
+            name: 'Maxim Kalinin'
+            login: 'kalin'
+            password: 'password_string'
+          capture:
+            json: '$.id'
+            as: 'id'
+
+      - get:
+          url: '/users'
+          headers:
+            Authorization: 'Bearer {{ token }}'
+
+      - get:
+          url: '/users/{{ id }}'
+          headers:
+            Authorization: 'Bearer {{ token }}'
+
+      - put:
+          url: '/users/{{ id }}'
+          headers:
+            Authorization: 'Bearer {{ token }}'
+          json:
+            name: 'Maxim Kalinin_2'
+            login: 'kalin_2'
+            password: 'password_string_2'
